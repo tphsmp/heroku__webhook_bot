@@ -1,5 +1,6 @@
 import os
 import telebot
+from telebot import types
 from flask import Flask, request
 
 TOKEN = '5306944270:AAFstlblEWr-Reb6V8IgQMXuHObDgKOgg5k'
@@ -12,7 +13,15 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Hi! ' + message.from_user.first_name + ' And wellcome to Neverwhere')
+    bot.reply_to(message, 'Привет' + message.from_user.first_name + 'я оналйн оракул')
+    # Готовим кнопки
+    keyboard = types.InlineKeyboardMarkup()
+    # По очереди готовим текст и обработчик
+    key_runeoftheday = types.InlineKeyboardButton(text='Руна дня', callback_data='runeoftheday')
+    keyboard.add(key_runeoftheday)
+    key_threerunes = types.InlineKeyboardButton(text='Три руны', callback_data='threerunes')
+    keyboard.add(key_threerunes)
+    bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
