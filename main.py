@@ -29,15 +29,15 @@ def start(message):
 @bot.message_handler(content_types=['text'])
 def callback_worker(message):
     if message.text == "одна руна":
-        bot.send_message(message.chat_id, 'One rune')
+        bot.send_message(message.chat_id, text='One rune')
 
     elif message.text == "три руны":
-        bot.send_message(message.chat_id, 'Three runes')
+        bot.send_message(message.chat_id, text='Three runes')
         
 
-@bot.message_handler(func=lambda message: True, content_types=['text'])
-def echo(message):
-    bot.reply_to(message, message.text)
+#@bot.message_handler(func=lambda message: True, content_types=['text'])
+#def echo(message):
+    #bot.reply_to(message, message.text)
 
 
 @server.route('/' + TOKEN, methods=['POST'])
