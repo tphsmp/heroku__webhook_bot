@@ -13,7 +13,7 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Привет' + message.from_user.first_name + 'я оналйн оракул')
+    bot.reply_to(message, 'Привет ' + message.from_user.first_name + 'я онлайн оракул')
     # Готовим кнопки
     keyboard = types.InlineKeyboardMarkup()
     # По очереди готовим текст и обработчик
