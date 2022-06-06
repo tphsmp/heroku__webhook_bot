@@ -28,14 +28,14 @@ def start(message):
         bot.send_message(message.from_user.id, 'Напиши Start')
     
     
-@bot.callback_query_handler(func=lambda call: True)
-def callback_worker(call):
-    if call.data == "runeoftheday":
-        bot.send_message(call.message.chat_id, 'One rune')
+@bot.callback_query_handler(func=lambda message: True)
+def callback_worker(message):
+    if message.data == "runeoftheday":
+        bot.send_message(message.chat_id, 'One rune')
 
-    elif call.data == "threerunes":
-        bot.send_message(call.message.chat_id, 'Three runes')
-
+    elif message.data == "threerunes":
+        bot.send_message(message.chat_id, 'Three runes')
+        
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo(message):
