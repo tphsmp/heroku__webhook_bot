@@ -13,7 +13,7 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Привет ' + message.from_user.first_name + 'я онлайн оракул')
+    bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
     # Готовим кнопки
     keyboard = types.InlineKeyboardMarkup()
     # По очереди готовим текст и обработчик
@@ -26,10 +26,10 @@ def start(message):
     
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
-    if call.data == 'runeoftheday':
+    if call.data == "runeoftheday":
         bot.send_message(call.message.chat_id, 'One rune')
 
-    elif call.data == 'threerunes':
+    elif call.data == "threerunes":
         bot.send_message(call.message.chat_id, 'Three runes')
 
 
