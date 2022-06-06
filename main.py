@@ -22,8 +22,8 @@ def start(message):
         markup.add(website, start)
         bot.send_message(message.chat.id, 'Выбери расклад', reply_markup=markup)
 
-    else:
-        bot.send_message(message.from_user.id, 'Напиши Start')
+    #else:
+        #bot.send_message(message.from_user.id, 'Напиши Start')
 
 
 @bot.message_handler(content_types=['text'])
