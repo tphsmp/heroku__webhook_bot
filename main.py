@@ -11,17 +11,21 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(content_types=['text'])
 def start(message):
-    bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
-    # Готовим кнопки
-    keyboard = types.InlineKeyboardMarkup()
-    # По очереди готовим текст и обработчик
-    key_runeoftheday = types.InlineKeyboardButton(text='Руна дня', callback_data='runeoftheday')
-    keyboard.add(key_runeoftheday)
-    key_threerunes = types.InlineKeyboardButton(text='Три руны', callback_data='threerunes')
-    keyboard.add(key_threerunes)
-    bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
+    if message.text == "Start":
+        bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
+        # Готовим кнопки
+        keyboard = types.InlineKeyboardMarkup()
+        # По очереди готовим текст и обработчик
+        key_runeoftheday = types.InlineKeyboardButton(text='Руна дня', callback_data='runeoftheday')
+        keyboard.add(key_runeoftheday)
+        key_threerunes = types.InlineKeyboardButton(text='Три руны', callback_data='threerunes')
+        keyboard.add(key_threerunes)
+        bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
+
+    else:
+        bot.send_message(message.from_user.id, 'Напиши Start')
     
     
 @bot.callback_query_handler(func=lambda call: True)
