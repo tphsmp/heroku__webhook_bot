@@ -12,7 +12,7 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Hi! And wellcome to Neverwhere')
+    bot.reply_to(message, 'Hi!' + message.from_user.first_name + 'And wellcome to Neverwhere')
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
