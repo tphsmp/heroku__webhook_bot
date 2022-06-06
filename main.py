@@ -28,10 +28,10 @@ def start(message):
 
 @bot.message_handler(content_types=['text'])
 def callback_worker(message):
-    if message.text == "Одна руна":
+    if message.text == "одна руна":
         bot.send_message(message.chat_id, 'One rune')
 
-    elif message.text == "Три руны":
+    elif message.text == "три руны":
         bot.send_message(message.chat_id, 'Three runes')
         
 
