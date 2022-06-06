@@ -22,6 +22,15 @@ def start(message):
     key_threerunes = types.InlineKeyboardButton(text='Три руны', callback_data='threerunes')
     keyboard.add(key_threerunes)
     bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
+    
+    
+@bot.callback_query_handlers(func=lambda call:True)
+def callback_worker(call):
+    if call.data == 'runeoftheday':
+        bot.send_message(call.message.chat_id, 'One rune')
+
+    elif call.data == 'threerunes':
+        bot.send_message(call.message.chat_id, 'Three runes')
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
