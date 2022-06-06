@@ -24,7 +24,7 @@ def start(message):
     bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
     
     
-@bot.callback_query_handlers(func=lambda call:True)
+@bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     if call.data == 'runeoftheday':
         bot.send_message(call.message.chat_id, 'One rune')
