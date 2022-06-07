@@ -32,9 +32,11 @@ def start(message):
 def callback_worker(call):
     if call.data == "runeoftheday":
         bot.send_message(call.message.chat_id, 'One rune')
+        bot.send_message(call.chat_id, call)
 
     elif call.data == "threerunes":
         bot.send_message(call.message.chat_id, 'Three runes')
+        bot.send_message(call.chat_id, call)
         
 
 @server.route('/' + TOKEN, methods=['POST', 'GET'])
