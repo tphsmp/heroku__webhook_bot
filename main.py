@@ -11,14 +11,33 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(content_types=['text'])
 def start(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("Одна руна"))
-    bot.send_message(message.chat_id, "One rune", reply_markup=markup)
+    if message.text == 'Start':
+        bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
+        # Готовим кнопки
+        keyboard = types.InlineKeyboardMarkup()
+        # По очереди готовим текст и обработчик
+        key_runeoftheday = types.InlineKeyboardButton(text='Руна дня', callback_data='runeoftheday')
+        keyboard.add(key_runeoftheday)
+        key_threerunes = types.InlineKeyboardButton(text='Три руны', callback_data='threerunes')
+        keyboard.add(key_threerunes)
+        bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
+
+    else:
+        bot.send_message(message.from_user.id, 'Напиши Start')
+    
+    
+@bot.callback_query_handler(func=lambda call: True)
+def callback_worker(call):
+    if call.data == "runeoftheday":
+        bot.send_message(call.message.chat_id, 'One rune')
+
+    elif call.data == "threerunes":
+        bot.send_message(call.message.chat_id, 'Three runes')
         
 
-@server.route('/' + TOKEN, methods=['POST'])
+@server.route('/' + TOKEN, methods=['POST', 'GET'])
 def get_message():
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
