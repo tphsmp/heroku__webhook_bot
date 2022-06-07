@@ -11,22 +11,22 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
-@bot.message_handler(commands=['help'])
+@bot.message_handler(commands=['start'])
 def website(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    website = types.KeyboardButton('Site')
-    start = types.KeyboardButton('Start')
-    markup.add(website, start)
-    bot.send_message(message.chat.id, 'Перейдите на сайт', reply_markup=markup)
+    onerune = types.KeyboardButton('One_rune')
+    threerunes = types.KeyboardButton('Three_runes')
+    markup.add(onerune, threerunes)
+    bot.send_message(message.chat.id, 'Выбери расклад', reply_markup=markup)
 
 
 @bot.message_handler(content_types=['text'])
 def buttons_actions(message):
-    if(message.text == 'Site'):
-        bot.send_message(message.chat.id, text="Будь как дома юзер")
+    if(message.text == 'One_rune'):
+        bot.send_message(message.chat.id, text="Руня дня")
         bot.send_message(message.chat.id, message)
     elif (message.text == 'Start'):
-        bot.send_message(message.chat.id, text="Порно в интернете коль желаешь покажу")
+        bot.send_message(message.chat.id, text="Три руны")
     else:
         pass
         
