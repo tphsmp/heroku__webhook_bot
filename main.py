@@ -17,22 +17,22 @@ def start(message):
         bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
         # Готовим кнопки
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        website = types.KeyboardButton('одна руна')
-        start = types.KeyboardButton('три руны')
-        markup.add(website, start)
+        onerune = types.KeyboardButton('one_rune')
+        threerunes = types.KeyboardButton('three_runes')
+        markup.add(onerune, threerunes)
         bot.send_message(message.chat.id, 'Выбери расклад', reply_markup=markup)
 
-    #else:
-        #bot.send_message(message.from_user.id, 'Напиши Start')
+    # else:
+    #     bot.send_message(message.from_user.id, 'Напиши Start')
 
 
 @bot.message_handler(content_types=['text'])
 def callback_worker(message):
-    if message.text == "одна руна":
-        bot.send_message(message.chat_id, text='One rune')
+    if message.text == 'one_rune':
+        bot.send_message(message.chat_id, text="One rune")
 
-    elif message.text == "три руны":
-        bot.send_message(message.chat_id, text='Three runes')
+    elif message.text == 'three_runes':
+        bot.send_message(message.chat_id, text="Three runes")
         
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
