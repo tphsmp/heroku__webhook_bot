@@ -11,34 +11,12 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['start'])
 def start(message):
-    if message.text == "Start":
-        bot.reply_to(message, 'Привет ' + message.from_user.first_name + ' я онлайн оракул')
-        # Готовим кнопки
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        onerune = types.KeyboardButton('one_rune')
-        threerunes = types.KeyboardButton('three_runes')
-        markup.add(onerune, threerunes)
-        bot.send_message(message.chat.id, 'Выбери расклад', reply_markup=markup)
-
-    # else:
-    #     bot.send_message(message.from_user.id, 'Напиши Start')
-
-
-@bot.message_handler(content_types=['text'])
-def callback_worker(message):
-    if message.text == 'one_rune':
-        bot.send_message(message.chat_id, text="One rune")
-
-    elif message.text == 'three_runes':
-        bot.send_message(message.chat_id, text="Three runes")
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton("Одна руна"))
+    bot.send_message(message.chat_id, "One rune", reply_markup=markup)
         
-
-#@bot.message_handler(func=lambda message: True, content_types=['text'])
-#def echo(message):
-    #bot.reply_to(message, message.text)
-
 
 @server.route('/' + TOKEN, methods=['POST'])
 def get_message():
