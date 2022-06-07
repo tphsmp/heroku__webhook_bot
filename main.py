@@ -2,8 +2,8 @@ import os
 import telebot
 from telebot import types
 from flask import Flask, request
-#from runa import Runa
-import random
+from runa import Runa
+from random import random, choice
 
 TOKEN = '5306944270:AAFstlblEWr-Reb6V8IgQMXuHObDgKOgg5k'
 APP_URL = f'https://implebot.herokuapp.com/{TOKEN}'
