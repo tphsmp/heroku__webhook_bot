@@ -11,32 +11,24 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
+@bot.message_handler(commands=['help'])
+def website(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    website = types.KeyboardButton('Site')
+    start = types.KeyboardButton('Start')
+    markup.add(website, start)
+    bot.send_message(message.chat.id, 'Перейдите на сайт', reply_markup=markup)
+
+
 @bot.message_handler(content_types=['text'])
-def start(message):
-    if message.text == 'Start':
-        bot.reply_to(message, 'Привет ' + message.from_user.first_name)
-        # Готовим кнопки
-        keyboard = types.InlineKeyboardMarkup()
-        # По очереди готовим текст и обработчик
-        key_runeoftheday = types.InlineKeyboardButton(text='Рандомная карта', callback_data='runeoftheday')
-        keyboard.add(key_runeoftheday)
-        key_threerunes = types.InlineKeyboardButton(text='Три карты', callback_data='threerunes')
-        keyboard.add(key_threerunes)
-        bot.send_message(message.from_user.id, text='Выбери расклад', reply_markup=keyboard)
-
+def buttons_actions(message):
+    if(message.text == 'Site'):
+        bot.send_message(message.chat.id, text="Будь как дома юзер")
+        bot.send_message(message.chat.id, message)
+    elif (message.text == 'Start'):
+        bot.send_message(message.chat.id, text="Порно в интернете коль желаешь покажу")
     else:
-        bot.send_message(message.from_user.id, 'Напиши Start')
-    
-    
-@bot.callback_query_handler(func=lambda call: True)
-def callback_worker(call):
-    if call.data == "runeoftheday":
-        bot.send_message(call.message.chat_id, 'One rune')
-        bot.send_message(call.chat_id, call)
-
-    elif call.data == "threerunes":
-        bot.send_message(call.message.chat_id, 'Three runes')
-        bot.send_message(call.chat_id, call)
+        pass
         
 
 @server.route('/' + TOKEN, methods=['POST', 'GET'])
