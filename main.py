@@ -3,7 +3,7 @@ import telebot
 from telebot import types
 from flask import Flask, request
 #from runa import Runa
-#from random import choice
+import random
 
 TOKEN = '5306944270:AAFstlblEWr-Reb6V8IgQMXuHObDgKOgg5k'
 APP_URL = f'https://implebot.herokuapp.com/{TOKEN}'
@@ -11,6 +11,11 @@ APP_URL = f'https://implebot.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 
 server = Flask(__name__)
+
+
+def ranumber():
+    x = random.randint(1, 24)
+    return str(x)
 
 
 @bot.message_handler(commands=['start'])
@@ -25,7 +30,7 @@ def website(message):
 @bot.message_handler(content_types=['text'])
 def buttons_actions(message):
     if(message.text == 'One_rune'):
-        bot.send_message(message.chat.id, text="Руня дня")
+        bot.send_message(message.chat.id, text="Руня дня " + ranumber())
     elif (message.text == 'Three_runes'):
         bot.send_message(message.chat.id, text="Три руны")
     else:
