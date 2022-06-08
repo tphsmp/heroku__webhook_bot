@@ -42,7 +42,7 @@ def buttons_actions(message):
         pass
         
 
-@server.route('/' + TOKEN, methods=['POST'])
+@server.route('/' + TOKEN, methods=['POST', 'GET'])
 def get_message():
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
