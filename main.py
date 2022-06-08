@@ -49,11 +49,9 @@ def buttons_actions(message):
         bot.send_message(message.chat.id, runa)
     elif (message.text == 'Three_runes'):
         for i in range(3):
-            runa = choice(runes)
-            newList.append(runa)
-            runa1 = str(choice(newList))
-            runes.remove(runa)
-            bot.send_message(message.chat.id, runa1)
+            runa = str(choice(runes))
+            #runes.remove(runa)
+            bot.send_message(message.chat.id, runa)
     else:
         pass
 
