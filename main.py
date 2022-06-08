@@ -60,15 +60,16 @@ def website(message):
 @bot.message_handler(content_types=['text'])
 def buttons_actions(message):
     if (message.text == 'One_rune'):
+        random.shuffle(runes)
         runa = str(choice(runes))
         bot.send_message(message.chat.id, runa)
     elif (message.text == 'Three_runes'):
+        random.shuffle(runes)
         for i in range(3):
             runa = choice(runes)
             runa1 = str(runa)
             runes.remove(runa)
             bot.send_message(message.chat.id, runa1)
-            runes.append(runa)
     else:
         pass
 
