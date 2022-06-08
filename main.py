@@ -1,4 +1,6 @@
 import os
+from copy import copy
+
 import telebot
 from telebot import types
 from flask import Flask, request
@@ -49,9 +51,10 @@ def buttons_actions(message):
         bot.send_message(message.chat.id, runa)
     elif (message.text == 'Three_runes'):
         for i in range(3):
-            runa = str(choice(runes))
-            #runes.remove(runa)
-            bot.send_message(message.chat.id, runa)
+            runa = choice(runes)
+            runa1 = str(copy(runa))
+            runes.remove(runa)
+            bot.send_message(message.chat.id, runa1)
     else:
         pass
 
