@@ -46,13 +46,13 @@ def website(message):
 def buttons_actions(message):
     if (message.text == 'One_rune'):
         runa = choice(runes)
-        bot.send_message(message.chat.id, runa.name + runa.ascii)
+        bot.send_message(message.chat.id, str(runa))
     elif (message.text == 'Three_runes'):
         for i in range(3):
             runa = choice(runes)
             newList.append(runa)
             runes.remove(runa)
-            bot.send_message(message.chat.id, runa.name + runa.ascii)
+            bot.send_message(message.chat.id, str(runa))
     else:
         pass
 
