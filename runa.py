@@ -15,6 +15,6 @@ class Runa:
 
     def __str__(self):
         if self.position==0:
-            return "%s %s %s %s"  % (self.name, self.ascii, self.description, "прямое положение")
+            return "%s %s %s %s" % (self.name, self.ascii, self.description, "прямое положение")
         if self.position==1:
             return "%s %s %s %s" % (self.name, self.ascii, self.descriptionInverted, "перевернутое положение")
