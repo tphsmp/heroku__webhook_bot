@@ -40,12 +40,12 @@ runes = [Runa("Fehu",
               "Будьте уверены: потерянное Вами отжило положенный ему срок и Вам это больше просто не нужно. Через какое-то время, когда боль поутихнет, Вы это поймете сами. Без сомнений откиньте прошлое и будте готовы пожить с пустотой внутри какое-то время.",
               "", "", "\u16B2")]
 
-newList = []
+#newList = []
 
 
-def ranumber():
-    x = randint(1, 24)
-    return str(x)
+#def ranumber():
+    #x = randint(1, 24)
+    #return str(x)
 
 
 @bot.message_handler(commands=['start'])
@@ -63,15 +63,14 @@ def buttons_actions(message):
         runa = str(choice(runes))
         bot.send_message(message.chat.id, runa)
     elif (message.text == 'Three_runes'):
-        newList.clear()
+        newList = runes.copy()
         for i in range(3):
-            runa = choice(runes)
-            newList.append(runa)
-            runes.remove(runa)
-            bot.send_message(message.chat.id, str(choice(newList)))
+            runa = choice(newList)
+            runa1 = str(runa)
+            newList.remove(runa)
+            bot.send_message(message.chat.id, runa1)
     else:
         pass
-
 
 @server.route('/' + TOKEN, methods=['POST', 'GET'])
 def get_message():
