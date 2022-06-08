@@ -3,7 +3,7 @@ import telebot
 from telebot import types
 from flask import Flask, request
 from runa import Runa
-from random import random, choice
+from random import random, choice, randint
 
 TOKEN = '5306944270:AAFstlblEWr-Reb6V8IgQMXuHObDgKOgg5k'
 APP_URL = f'https://implebot.herokuapp.com/{TOKEN}'
@@ -12,7 +12,7 @@ bot = telebot.TeleBot(TOKEN)
 
 server = Flask(__name__)
 
-#runes = ["Fehu", "Uruz", "Thurisaz", "Ansuz", "Raido", "Kenaz", "Gifu", "Wunjo"]
+# runes = ["Fehu", "Uruz", "Thurisaz", "Ansuz", "Raido", "Kenaz", "Gifu", "Wunjo"]
 runes = [Runa("Fehu",
               "Сосредоточьте свое внимание на финансовой стороне дела. Не расслабляйтесь по отношению к работе, нельзя парить в облаках, мечтать о не возможном – постарайтесь увеличить или хотя бы сохранить то имущество, которое у Вас реально есть на данный момент. Значение руны Феху (Fehu) в плоскости деловых и партнёрских отношений – укрепляйте нынешние связи, стройте новые, взаимовыгодные взаимоотношения. Трезво смотрите на ситуацию. Преимущества в данный момент на вашей стороне.",
               "Ограничьте расход денежных средств. Берегитесь двояких ситуаций и неясных предложений, готовьтесь к образованию всё новых и новых преград на Вашем пути. Лучше отложить на какое-то время решение важных для Вас проблем. Постарайтесь найти путь из сложившейся ситуации, мысленно оградитесь от неё, отойдите в строну – наверное, на данный момент это лучшее для Вас решение.",
@@ -29,7 +29,7 @@ newList = []
 
 
 def ranumber():
-    x = random.randint(1, 24)
+    x = randint(1, 24)
     return str(x)
 
 
@@ -46,16 +46,16 @@ def website(message):
 def buttons_actions(message):
     if (message.text == 'One_rune'):
         runa = choice(runes)
-        bot.send_message(message.chat.id, runa)
+        bot.send_message(message.chat.id, runa.name + runa.ascii)
     elif (message.text == 'Three_runes'):
         for i in range(3):
             runa = choice(runes)
             newList.append(runa)
             runes.remove(runa)
-            bot.send_message(message.chat.id, runa)
+            bot.send_message(message.chat.id, runa.name + runa.ascii)
     else:
         pass
-        
+
 
 @server.route('/' + TOKEN, methods=['POST', 'GET'])
 def get_message():
