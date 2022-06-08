@@ -36,7 +36,7 @@ def buttons_actions(message):
     if (message.text == 'One_rune'):
         bot.send_message(message.chat.id, text="Руня дня " + runa)
     elif (message.text == 'Three_runes'):
-        bot.send_message(message.chat.id, text="Три руны " + ranumber())
+        bot.send_message(message.chat.id, text="Три руны ")
     else:
         pass
         
