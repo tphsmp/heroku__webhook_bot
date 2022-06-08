@@ -51,8 +51,8 @@ def buttons_actions(message):
         for i in range(3):
             runa = choice(runes)
             newList.append(runa)
-            runes.remove(runa)
             runa1 = str(runa)
+            runes.remove(runa)
             bot.send_message(message.chat.id, runa1)
     else:
         pass
