@@ -14,7 +14,6 @@ server = Flask(__name__)
 
 runes = ["Fehu", "Uruz", "Thurisaz", "Ansuz", "Raido", "Kenaz", "Gifu", "Wunjo"]
 newList = []
-runa = choice(runes)
 
 
 def ranumber():
@@ -34,9 +33,13 @@ def website(message):
 @bot.message_handler(content_types=['text'])
 def buttons_actions(message):
     if (message.text == 'One_rune'):
+        runa = choice(runes)
         bot.send_message(message.chat.id, text="Руня дня " + runa)
     elif (message.text == 'Three_runes'):
         for i in range(3):
+            runa = choice(runes)
+            newList.append(runa)
+            runes.remove(runa)
             bot.send_message(message.chat.id, text="Три руны " + runa)
     else:
         pass
