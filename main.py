@@ -45,8 +45,8 @@ def website(message):
 @bot.message_handler(content_types=['text'])
 def buttons_actions(message):
     if (message.text == 'One_rune'):
-        runa = choice(runes)
-        bot.send_message(message.chat.id, str(runa))
+        runa = str(choice(runes))
+        bot.send_message(message.chat.id, runa)
     elif (message.text == 'Three_runes'):
         for i in range(3):
             runa = choice(runes)
