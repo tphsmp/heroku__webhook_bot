@@ -9,9 +9,9 @@ class Runa:
         self.name = name
         self.description = description
         self.descriptionInverted = descriptionInverted
-        self.position = position
-        if position != 0:
-            self.position = random.randint(0, 1)
+        self.position = random.randint(0, 1)
+        if name == 'Gifu':
+            self.position = 0
         self.pointer = pointer
         self.ascii = ascii
 
