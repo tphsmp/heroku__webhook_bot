@@ -10,7 +10,7 @@ class Runa:
         self.description = description
         self.descriptionInverted = descriptionInverted
         self.position = random.randint(0, 1)
-        if name == 'Gifu':
+        if name == 'Gifu' or name == 'Hagalaz' or name == 'Nautiz' or name == 'Isa' or name == 'Jera' or name == 'Eihwaz' or name == 'Siegel' or name == 'Ingwaz' or name == 'Dagaz' or name == 'Wyrd':
             self.position = 0
         self.pointer = pointer
         self.ascii = ascii
