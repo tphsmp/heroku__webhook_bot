@@ -7,7 +7,7 @@ from flask import Flask, request
 from runa import Runa
 from random import random, choice, randint
 
-TOKEN = '5306944270:AAEuf7vV7R62Pug9H4cmUm9SBE4Jl0Cim4k'
+TOKEN = ''
 APP_URL = f'https://implebot.herokuapp.com/{TOKEN}'
 
 bot = telebot.TeleBot(TOKEN)
